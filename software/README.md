@@ -1,4 +1,4 @@
-NadHat pieces of softwares.
+NadHat pieces of software.
 ===========================
 
 ### Introduction
