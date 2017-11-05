@@ -21,15 +21,15 @@ Before using theses python utilities, you sound install some dependencies
 
 ### Use sms.py
 
-python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o BOUYGUES -cp 0000
-python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o ORANGE -cp 0000
-python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o FREE -cp 1234
+ - python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o BOUYGUES -cp 0000
+ - python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o ORANGE -cp 0000
+ - python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o FREE -cp 1234
 
 ### Use mms.py
 
-mms.py --title title.txt --text text.txt -o BOUYGUES --cpin 0000 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
-mms.py --title title.txt --text text.txt -o ORANGE --cpin 0000 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
-mms.py --title title.txt --text text.txt -o FREE --cpin 1234 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
+ - mms.py --title title.txt --text text.txt -o BOUYGUES --cpin 0000 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
+ - mms.py --title title.txt --text text.txt -o ORANGE --cpin 0000 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
+ - mms.py --title title.txt --text text.txt -o FREE --cpin 1234 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
 
 NOTE : image.jpg should be under 200ko
 
