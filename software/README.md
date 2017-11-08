@@ -1,36 +1,60 @@
-NadHat pieces of software.
-===========================
+Welcome to NadHat.
+==================
 
 ### Introduction
 
-NadHat pieces of software are some utilities to send SMS and MMS.
-Don't hesitate to enrich this software
+NadHat is a GSM/GPRS modem extension hat for raspberry pi. It's pi zero hat format compatible (30x65mm). It uses the well known SIM800C module to offer a low cost M2M communication interface.
 
-Enjoy Developping !
+You'll find in this deposit [schematics], [datasheets and application notes], some [pieces of software] written in python and more in the future.
+
+You can also follow nadhat google+ collection : https://plus.google.com/collection/o2lZRE
+
+Have fun.
+
+The garatronic team.
 
 www.garatronic.fr
 
-### Dependencies
 
-Before using theses python utilities, you sound install some dependencies
+Don't want to read the manual, here a quickstart guide :
 
- - get update
- - sudo apt-get install git minicom python-dev python-setuptools python-serial python-pip
- - sudo pip install wiringpi
- - sudo apt-get install wiringp
+### Serial port setup
 
-### Use sms.py
-
- - python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o BOUYGUES -cp 0000
- - python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o ORANGE -cp 0000
- - python sms.py "+336xxxxxxxxx" "Le premier SMS V1.0" -o FREE -cp 1234
-
-### Use mms.py
-
- - mms.py --title title.txt --text text.txt -o BOUYGUES --cpin 0000 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
- - mms.py --title title.txt --text text.txt -o ORANGE --cpin 0000 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
- - mms.py --title title.txt --text text.txt -o FREE --cpin 1234 --port  /dev/ttyAMA0 +336xxxxxxxxx image.jpg
-
-NOTE : image.jpg should be under 200ko
+default setup for serial port /dev/ttyAMA0 is 115200,8,N,1
 
 
+### Some usefull at command for SIM800C :
+ - at _: answer OK is serial setup is OK_
+ - atz _: reset default configuration_
+ - ati _: display product indentification information_
+ - at+cgmi _: display product manufacturer_
+ - at+cgmm _: display model identification_
+ - at+cpin? _: check if pin number is required_
+ - at+cpin=xxxx _: enter pin code_
+ - at+cbc _: battery voltage (around 67% or 3940mV)_
+ - at&v _: display current configuration_
+ - at+csq _: report quality of signal (first nb between 0-31, 2nd nb between 0-7, bigger is better)_
+ - at+gsn _: request TA serial Number Identification (IMEI)_
+ - at+cimi _: request international subscriber identity_
+ - at+cops=? _: report list of present operators_
+ - at+cspn? _: get service provider name from sim_
+ - at+cadc? _: read adc input (0-2.8V range, pin 7 of CN2)_
+ - at+cpowd=1 _: normal poweroff_
+
+### Send an SMS :
+ - at+cmgf=1 _: sms in text mode_
+ - at+csca="+33695000695" _: service provider sms center number (french provider FREE for me)_
+ - at+cmgs="+3363054xxxx" _: start SMS edition to "receiver number"_
+   _prompt become '>'_
+ - input your SMS + <CR>
+ - send hexadecimal chars '0x1A,0x0D' (<SUB><CR> in fact) _: to send your SMS_
+
+### Receive an SMS :
+ - _answer the SMS you've received on your phone by NadHat._
+ - _should receive 'CMTI:"SM",x' meaning you have receive a SMS in slot x_
+ - at+cmgr=x _: read sms in slot 1_
+ - at+cmgd=x _: delete sms to free slot x for next SMS_
+
+[schematics]: https://github.com/garatronic/nadhat/tree/master/hardware
+[datasheets and application notes]: https://github.com/garatronic/nadhat/tree/master/datasheet
+[pieces of software]: https://github.com/garatronic/nadhat/tree/master/datasheet
