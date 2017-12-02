@@ -1,13 +1,16 @@
 #! /bin/bash
 #
-# A small script to pulse 1s on SIM800 powerkey to power-[up|down] it
+# A small script to power-[up|down] NadHAT SIM800C module
 # 
-# fpierson@garatronic.fr
+# Author : fpierson@garatronic.fr
+#
 # ver	date 		modification
 # 1.0	2017-11-27	First release
+# 1.1	2017-12-02	DisplayUsage if ./nadhat.sh script is invoqued w/o argument
+#
 
-VERSION="1.0"
-DATE_VERSION="2017-11-27"
+VERSION="1.1"
+DATE_VERSION="2017-12-02"
 
 # NB samples on BCM RXD input to check if SIM800 is up
 NB_SAMPLES=3
@@ -28,7 +31,6 @@ QUIET="none"
 function DisplayVersion()
 {
 	echo "$0 version $VERSION [$DATE_VERSION]"
-	exit 0
 }
 
 function DisplayUsage()
@@ -73,7 +75,7 @@ function Pulse()
 function Install()
 {
 	INSTALL="none"
-	
+
 	command -v gpio >/dev/null 2>&1 || {
 		INSTALL="wiringpi"
 		echo "gpio seens not to be installed, do you want to install it ?"
@@ -105,7 +107,7 @@ function Install()
 			case $REPLY in
 				1|y)
 				dest="/usr/local/sbin/"
-				shortname=`echo $0 | sed -r s/\.sh//`
+				shortname="nadpwr"
 				sudo cp $0 $dest$shortname
 				echo $shortname has been copied in $dest
 				break
@@ -122,6 +124,14 @@ function Install()
 	fi
 	exit 0
 }
+
+if [ $# = 0 ]; then
+	if echo "$0" | grep '\.sh$' >/dev/null 2>&1; then 
+		echo "$0 has been upgraded : version $VERSION [$DATE_VERSION]"
+		DisplayUsage
+		exit 0
+	fi
+fi
 
 for param in "$@"
 do
