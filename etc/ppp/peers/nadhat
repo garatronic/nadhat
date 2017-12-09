@@ -1,0 +1,31 @@
+# PPPD configuration for nadhat connection on Raspbian.
+
+# APN
+connect "/usr/sbin/chat -v -f /etc/chatscripts/gprs -T free"
+
+# nadhat serial.
+/dev/ttyAMA0
+
+# Speed of the serial line.
+115200
+
+# Assumes that your IP address is allocated dynamically by the ISP.
+noipdefault
+
+# Try to get the name server addresses from the ISP.
+usepeerdns
+
+# Use this connection as the default route to the internet.
+defaultroute
+
+# Makes PPPD "dial again" when the connection is lost.
+persist
+
+# Do not ask the remote to authenticate.
+noauth
+
+# No hardware flow control on the serial link with nadhat
+nocrtscts
+
+# No modem control lines with nadhat.
+local
