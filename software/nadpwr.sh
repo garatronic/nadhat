@@ -7,10 +7,10 @@
 # ver	date 		modification
 # 1.0	2017-11-27	First release
 # 1.1	2017-12-02	DisplayUsage if ./nadhat.sh script is invoqued w/o argument
-#
+# 1.2   2018-05-02	Sensing RXD rather TXD pin
 
-VERSION="1.1"
-DATE_VERSION="2017-12-02"
+VERSION="1.2"
+DATE_VERSION="2018-05-02"
 
 # NB samples on BCM RXD input to check if SIM800 is up
 NB_SAMPLES=3
@@ -46,15 +46,13 @@ function DisplayUsage()
 function CheckPwr()
 {
 	NAD_PWR="unknow"
-	# Just check if NadHAT is not already powered by sensing TXD
-	gpio mode 15 in
+	# Just check if NadHAT is not already powered by sensing RXD
 	for (( i=NB_SAMPLES; i>=1; i-- ))
 	do
-		if [ `gpio read 15` -eq 1 ]; then
+		if [ `gpio read 16` -eq 1 ]; then
 			NAD_PWR="on"
 		fi
 	done
-	gpio mode 15 alt0
 	if [ $NAD_PWR != "on" ]; then 
 		NAD_PWR=off
 	fi
