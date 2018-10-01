@@ -12,11 +12,11 @@ import datetime
 import os, signal
 import argparse
 
-operator_sms_dict = {'ORANGE': '+33689004000', 'SFR': '+33609001390', 'FREE': '+33695000695', 'BOUYGUES': '+33660660001', 'ORANGE_CARAIBES': '+590690350012'}
-operator_mms_url_dict = {'ORANGE': 'http://mms.orange.fr', 'SFR': 'http://mms.sfr.fr', 'FREE': 'http://mms1', 'BOUYGUES': 'http://mms.bouyguestelecom.fr/mms/wapenc', 'ORANGE_CARAIBES': ''}
-operator_mms_proxy_dict = {'ORANGE': '192.168.10.200', 'SFR': '10.151.0.1', 'FREE': '212.27.40.225', 'BOUYGUES': '62.201.129.226', 'ORANGE_CARAIBES': ''}
-operator_mms_port_dict = {'ORANGE': '8080', 'SFR': '8080', 'FREE': '80', 'BOUYGUES': '8080', 'ORANGE_CARAIBES': ''}
-operator_mms_apn_dict = {'ORANGE': 'orange.acte', 'SFR': 'mmssfr', 'FREE': 'mmsfree', 'BOUYGUES': 'mmsbouygtel.com', 'ORANGE_CARAIBES': ''}
+operator_sms_dict = {'ORANGE': '+33689004000', 'SFR': '+33609001390', 'FREE': '+33695000695', 'BOUYGUES': '+33660660001', 'ORANGE_CARAIBES': '+590690350012', 'LAPOSTE': '+33609001390'}
+operator_mms_url_dict = {'ORANGE': 'http://mms.orange.fr', 'SFR': 'http://mms.sfr.fr', 'FREE': 'http://mms1', 'BOUYGUES': 'http://mms.bouyguestelecom.fr/mms/wapenc', 'ORANGE_CARAIBES': '', 'LAPOSTE': 'http://mmsdebitel'}
+operator_mms_proxy_dict = {'ORANGE': '192.168.10.200', 'SFR': '10.151.0.1', 'FREE': '212.27.40.225', 'BOUYGUES': '62.201.129.226', 'ORANGE_CARAIBES': '', 'LAPOSTE': '10.143.156.3'}
+operator_mms_port_dict = {'ORANGE': '8080', 'SFR': '8080', 'FREE': '80', 'BOUYGUES': '8080', 'ORANGE_CARAIBES': '', 'LAPOSTE': '8080'}
+operator_mms_apn_dict = {'ORANGE': 'orange.acte', 'SFR': 'mmssfr', 'FREE': 'mmsfree', 'BOUYGUES': 'mmsbouygtel.com', 'ORANGE_CARAIBES': '', 'LAPOSTE': 'sl2sfr'}
 
 # Contenu MMS 
 PIC = 1
@@ -42,7 +42,7 @@ parser.add_argument('--text', '-txt',
 
 parser.add_argument('--operator', '-o',
                     help='Service provider',
-                    choices=['ORANGE', 'SFR', 'FREE', 'BOUYGUES', 'ORANGE_CARAIBES'],
+                    choices=['ORANGE', 'SFR', 'FREE', 'BOUYGUES', 'ORANGE_CARAIBES', 'LAPOSTE'],
                     default='ORANGE')
 					
 parser.add_argument('--cpin', '-cp',
