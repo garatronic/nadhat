@@ -49,7 +49,7 @@ function CheckPwr()
 	# Just check if NadHAT is not already powered by sensing RXD
 	for (( i=NB_SAMPLES; i>=1; i-- ))
 	do
-		if [ `gpio read 16` -eq 1 ]; then
+		if [ `gpio read 14` -eq 1 ]; then
 			NAD_PWR="on"
 		fi
 	done
